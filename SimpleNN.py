@@ -134,15 +134,15 @@ plt.ion()
 plt.show()
 
 for hl in range(11,21):
-    num_nodes = [train_X.shape[1],hl,hl,hl,hl,train_y.shape[1]]
+    num_nodes = [train_X.shape[1],hl,train_y.shape[1]]
     snn = SimpleNN(num_nodes)
     accuracy = snn.learn(train_X, test_X, train_y, test_y, epochs=500, batch_size=5)
     plt.plot(1-np.square(accuracy),label='# hl = {}'.format(hl))
     plt.draw()
     plt.show()
 
-plt.xlabel('epoch')
-plt.ylabel('loss')
+plt.xlabel('$\mathrm{epoch}$')
+plt.ylabel('$\mathrm{error}^2$')
 plt.legend(loc='upper right')
 
-plt.savefig('{}.pdf'.format('-'.join(str(n) for n in num_nodes)))
+plt.savefig('figs/{}.pdf'.format('-'.join(str(n) for n in num_nodes)))
